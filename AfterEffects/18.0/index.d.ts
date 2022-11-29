@@ -1667,6 +1667,10 @@ declare class OutputModule {
     "Audio Sample Rate": string
     Channels: string
     Color: string
+    /** 
+     * Required if Crop Bottom, Crop Left, Crop Right, or Crop Top is set.
+     * can be true or false
+     */
     Crop: string
     "Crop Bottom": string
     "Crop Left": string
@@ -1680,9 +1684,16 @@ declare class OutputModule {
     "Output Audio": string
     "Output File Info": string
     "Post-Render Action": string
+    /**
+     * Required if Resize Quality or Resize to is set.
+     * can be true or false
+     */
     Resize: string
     "Resize Quality": string
-    "Resize to": object
+    "Resize to": {
+      x: string
+      y: string
+    }
     "Starting #": string
     "Use Comp Frame Number": string
     "Use Region of Interest": string
@@ -2327,7 +2338,28 @@ declare class RenderQueueItem {
 
   getSetting(key: string): string | number
 
-  getSettings(format: GetSettingsFormat): object
+  getSettings(format: GetSettingsFormat): { //TODO: Implement types
+    "3:2 Pulldown": "Off",
+    "Color Depth": "Current Settings",
+    "Disk Cache": "Read Only",
+    "Effects": "Current Settings",
+    "Field Render": "Off",
+    "Frame Blending": "On for Checked Layers",
+    "Frame Rate": "Use comp's frame rate",
+    "Guide Layers": "All Off",
+    "Motion Blur": "On for Checked Layers",
+    "Proxy Use": "Use No Proxies",
+    "Quality": "Best",
+    "Resolution": "Full",
+    "Skip Existing Files": "false",
+    "Solo Switches": "Current Settings",
+    "Time Span": "Work Area Only",
+    "Time Span Duration": "22.1",
+    "Time Span End": "22.1",
+    "Time Span Start": "0.0",
+    "Use comp's frame rate": "30.0",
+    "Use this frame rate": "30.0"
+  }
 
   setSetting(key: string, value: string | number): void
 
